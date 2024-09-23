@@ -70,20 +70,22 @@ const Demo = () => {
 
                 {/* Browse History */}
                 <div className="flex flex-col gap-1 max-h-60 overflow-y-auto" ref={parent}>
-                    {allArticles.map((item, index) => (
-                        <div key={`link-${index}`} className="link_card">
-                            <div className="copy_btn" onClick={() => handleCopy(item.url)}>
-                                <img
-                                    src={copied === item.url ? tick : copy}
-                                    alt={copied === item.url ? "tick_icon" : "copy_icon"}
-                                    className="w-[40%] h-[40%] object-contain"
-                                />
+                    {allArticles
+                        .map((item, index) => (
+                            <div key={`link-${index}`} className="link_card">
+                                <div className="copy_btn" onClick={() => handleCopy(item.url)}>
+                                    <img
+                                        src={copied === item.url ? tick : copy}
+                                        alt={copied === item.url ? "tick_icon" : "copy_icon"}
+                                        className="w-[40%] h-[40%] object-contain"
+                                    />
+                                </div>
+                                <p className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate">
+                                    {item.url}
+                                </p>
                             </div>
-                            <p className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate">
-                                {item.url}
-                            </p>
-                        </div>
-                    ))}
+                        ))
+                        .reverse()}
                 </div>
 
                 {/* Results */}
