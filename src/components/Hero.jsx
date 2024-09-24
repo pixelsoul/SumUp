@@ -4,12 +4,12 @@ const Hero = () => {
             <nav className="flex justify-between items-center w-full mb-10 pt-3">
                 {/* <img src={logo} alt="sumz_logo" className="w-28 object-contain" /> */}
                 <h1 className="font-satoshi text-3xl font-bold">SumUp</h1>
-                <button
+                {/* <button
                     type="button"
                     onClick={() => window.open("https://github.com/pixelsoul/ai-summarizer")}
                     className="black_btn">
                     Github
-                </button>
+                </button> */}
             </nav>
             <h1 className="text-6xl text-center font-extrabold">
                 Summarize Articles with <br className="max-md:hidden" />{" "}
