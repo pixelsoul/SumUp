@@ -1,10 +1,9 @@
-import { logo } from "../assets"
-
 const Hero = () => {
     return (
         <header className="w-full flex justify-center items-center flex-col">
             <nav className="flex justify-between items-center w-full mb-10 pt-3">
-                <img src={logo} alt="sumz_logo" className="w-28 object-contain" />
+                {/* <img src={logo} alt="sumz_logo" className="w-28 object-contain" /> */}
+                <h1 className="font-satoshi text-3xl font-bold">SumUp</h1>
                 <button
                     type="button"
                     onClick={() => window.open("https://github.com/pixelsoul/ai-summarizer")}
@@ -12,7 +11,7 @@ const Hero = () => {
                     Github
                 </button>
             </nav>
-            <h1 className="head_text">
+            <h1 className="text-6xl text-center font-extrabold">
                 Summarize Articles with <br className="max-md:hidden" />{" "}
                 <span className="orange_gradient">Artificial Intelligence</span>
             </h1>

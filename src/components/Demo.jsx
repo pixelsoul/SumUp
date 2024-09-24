@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import autoAnimate from "@formkit/auto-animate"
 
 import { copy, linkIcon, loader, tick } from "../assets"
@@ -13,6 +13,8 @@ const Demo = () => {
     const [copied, setCopied] = useState("")
 
     const [getSummary, { error, isFetching }] = useLazyGetSummaryQuery()
+
+    const parent = useRef(null)
 
     useEffect(() => {
         parent.current && autoAnimate(parent.current)
@@ -57,6 +59,7 @@ const Demo = () => {
                     <img src={linkIcon} alt="link_icon" className="absolute left-0 my-2 ml-3 w-5" />
                     <input
                         type="url"
+                        name="article_url"
                         placeholder="Enter a URL"
                         value={article.url}
                         onChange={(e) => setArticle({ ...article, url: e.target.value })}
@@ -69,10 +72,13 @@ const Demo = () => {
                 </form>
 
                 {/* Browse History */}
-                <div className="flex flex-col gap-1 max-h-60 overflow-y-auto" ref={parent}>
+                <div className="flex flex-col gap-1 max-h-60 overflow-y-auto">
                     {allArticles
                         .map((item, index) => (
-                            <div key={`link-${index}`} className="link_card">
+                            <div
+                                key={`link-${index}`}
+                                onClick={() => setArticle(item)}
+                                className="link_card">
                                 <div className="copy_btn" onClick={() => handleCopy(item.url)}>
                                     <img
                                         src={copied === item.url ? tick : copy}
@@ -80,7 +86,7 @@ const Demo = () => {
                                         className="w-[40%] h-[40%] object-contain"
                                     />
                                 </div>
-                                <p className="flex-1 font-satoshi text-blue-700 font-medium text-sm truncate">
+                                <p className="flex-1 font-satoshi text-orange-700 font-medium text-sm truncate">
                                     {item.url}
                                 </p>
                             </div>
@@ -94,7 +100,7 @@ const Demo = () => {
                         <img src={loader} alt="loader" className="w-20 h-20 object-contain" />
                     ) : error ? (
                         <p className="font-inter font-bold text-black text-center">
-                            Well, that wasn't supposed to happen...
+                            Well, that wasn&apos;t supposed to happen...
                             <br />
                             <span className="font-satoshi font-normal text-gray-700">
                                 {error?.data?.error}
@@ -102,12 +108,12 @@ const Demo = () => {
                         </p>
                     ) : (
                         article.summary && (
-                            <div className="flex flex-col gap-3">
-                                <h2 className="font-satoshi font-bold text-gray-600 text-xl">
+                            <div className="flex flex-col gap-3  rounded-lg">
+                                <h2 className="font-satoshi font-bold text-zinc-600 text-xl">
                                     Article Summary
                                 </h2>
-                                <div className="summary_box">
-                                    <p className="font-inter font-medium text-sm text-gray-700">
+                                <div className="rounded-xl border border-gray-400 bg-white/20  backdrop-blur p-4">
+                                    <p className="font-inter font-medium text-sm text-zinc-800 leading-6">
                                         {article.summary}
                                     </p>
                                 </div>
