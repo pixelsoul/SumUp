@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react"
 import autoAnimate from "@formkit/auto-animate"
+import { FaLink } from "react-icons/fa"
 
 import { copy, linkIcon, loader, tick } from "../assets"
 import { useLazyGetSummaryQuery } from "../services/article"
@@ -56,7 +57,8 @@ const Demo = () => {
         <section className="mt-16 w-full max-w-xl">
             <div className="flex flex-col w-full gap-2">
                 <form className="relative flex justify-center items-center" onSubmit={handleSubmit}>
-                    <img src={linkIcon} alt="link_icon" className="absolute left-0 my-2 ml-3 w-5" />
+                    {/* <img src={linkIcon} alt="link_icon" className="absolute left-0 my-2 ml-3 w-5" /> */}
+                    <FaLink className="absolute left-0 my-2 ml-3 w-5" alt="link_icon" />
                     <input
                         type="url"
                         name="article_url"
@@ -109,11 +111,9 @@ const Demo = () => {
                     ) : (
                         article.summary && (
                             <div className="flex flex-col gap-3  rounded-lg">
-                                <h2 className="font-satoshi font-bold text-zinc-600 text-xl">
-                                    Article Summary
-                                </h2>
-                                <div className="rounded-xl border border-gray-400 bg-white/20  backdrop-blur p-4">
-                                    <p className="font-inter font-medium text-sm text-zinc-800 leading-6">
+                                <h2 className="font-satoshi font-bold text-xl">Article Summary</h2>
+                                <div className="rounded-xl border border-gray-400 bg-neutral-100 dark:bg-neutral-800 dark:border-neutral-700 backdrop-blur p-4">
+                                    <p className="font-inter font-medium text-sm dark:text-white/80 text-gray-700 leading-6">
                                         {article.summary}
                                     </p>
                                 </div>

@@ -2,9 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* 
-  Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
-*/
+*::-webkit-scrollbar {
+    @apply w-1;
+}
+
+*::-webkit-scrollbar-track {
+    @apply bg-neutral-200 dark:bg-neutral-600;
+}
+
+*::-webkit-scrollbar-thumb {
+    @apply bg-orange-500;
+}
 
 @media screen and (max-width: 640px) {
     .main {
@@ -48,21 +56,17 @@ main {
 }
 
 .submit_btn {
-    @apply hover:border-gray-700 hover:text-gray-700 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 font-sans text-sm font-medium text-gray-400;
+    @apply hover:border-gray-700 dark:hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-400 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 dark:border-gray-500 font-sans text-sm font-medium text-gray-400 dark:text-gray-300;
 }
 
 .link_card {
-    @apply p-3 flex justify-start items-center flex-row bg-white border border-gray-200 gap-3 rounded-lg cursor-pointer;
+    @apply p-3 mr-1 flex justify-center items-center flex-row bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 gap-3 rounded-md cursor-pointer;
 }
 
 .copy_btn {
-    @apply w-7 h-7 rounded-full bg-white/10 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
+    @apply w-7 h-7 rounded-full bg-white/10 dark:bg-white/80 hover:bg-white shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
 }
 
 .blue_gradient {
     @apply font-black bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent;
-}
-
-.summary_box {
-    @apply rounded-xl border border-gray-200 bg-white/20 shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur p-4;
 }
