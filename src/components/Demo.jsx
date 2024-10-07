@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import autoAnimate from "@formkit/auto-animate"
 import { FaLink } from "react-icons/fa"
 
-import { copy, linkIcon, loader, tick } from "../assets"
+import { copy, loader, tick } from "../assets"
 import { useLazyGetSummaryQuery } from "../services/article"
 
 const Demo = () => {
