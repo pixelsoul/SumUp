@@ -86,7 +86,7 @@ const Demo = () => {
                                         className="w-[40%] h-[40%] object-contain"
                                     />
                                 </div>
-                                <p className="flex-1 font-satoshi text-orange-600 font-medium text-sm truncate">
+                                <p className="flex-1 font-satoshi font-medium text-sm truncate">
                                     {item.url}
                                 </p>
                             </div>

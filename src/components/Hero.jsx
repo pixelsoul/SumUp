@@ -1,3 +1,5 @@
+import Toggle from "./DarkModeToggle"
+
 const Hero = () => {
     return (
         <header className="w-full flex justify-center items-center flex-col">
@@ -10,6 +12,7 @@ const Hero = () => {
                     className="black_btn">
                     Github
                 </button> */}
+                <Toggle />
             </nav>
             <h1 className="text-6xl text-center font-extrabold">
                 Summarize Articles with <br className="max-md:hidden" />{" "}
