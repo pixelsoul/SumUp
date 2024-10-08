@@ -19,8 +19,7 @@ const Hero = () => {
                 <span className="orange_gradient">Artificial Intelligence</span>
             </h1>
             <h2 className="desc">
-                Simplify your reading experience with AI-powered article summarization. Get a
-                concise summary of any article in seconds.
+                Simplify your reading experience with AI-powered article summarization.
             </h2>
         </header>
     )
