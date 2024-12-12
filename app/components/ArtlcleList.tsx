@@ -22,7 +22,7 @@ const ArticleList = ({ articles, selectedArticle }: ArticlesInterface) => {
     }
 
     return (
-        <>
+        <div className="max-h-72 overflow-y-auto flex flex-col gap-1 py-2 px-2 rounded-lg border shadow-lg">
             {articles &&
                 articles.length > 0 &&
                 articles
@@ -30,9 +30,10 @@ const ArticleList = ({ articles, selectedArticle }: ArticlesInterface) => {
                         <div
                             key={`link-${index}`}
                             onClick={() => handleSelectedArticle(article)}
-                            className="link_card mb-1">
+                            className="p-3 flex flex-row justify-center items-center bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 gap-3 rounded-md cursor-pointer">
                             <div
-                                className="text-neutral-950 dark:text-neutral-50 px-0 py-3 bg-neutral-200 dark:bg-neutral-900 flex items-center justify-center rounded-full text-4xl"
+                                datatype=""
+                                className="text-neutral-950 dark:text-neutral-50 px-0 py-3 bg-neutral-200 dark:bg-neutral-950 flex items-center justify-center rounded-full text-4xl"
                                 onClick={() => handleCopy(article.url)}>
                                 {copied === article.url ? (
                                     <FaCheck className="w-[40%] h-[40%] object-contain" />
@@ -44,7 +45,7 @@ const ArticleList = ({ articles, selectedArticle }: ArticlesInterface) => {
                         </div>
                     ))
                     .reverse()}
-        </>
+        </div>
     )
 }
 
