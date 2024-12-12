@@ -4,6 +4,7 @@ import ArticleList from "@/app/components/ArtlcleList"
 import ArticleSummary from "@/app/components/ArticleSummary"
 import { Articles, Article } from "@/types/articles"
 import toast from "react-hot-toast"
+import { Separator } from "@/components/ui/separator"
 
 type ApiResponse = {
     error?: string
@@ -101,20 +102,25 @@ const ArticleSummarizer = () => {
 
     return (
         <div className="flex flex-col gap-5">
-            <div>
+            <section>
                 <AddressInput
                     value={url}
                     setValue={setUrl}
                     placeholder="Enter a URL"
                     onSubmit={handleSubmit}
                 />
-            </div>
-            <div>
-                <ArticleList articles={articles} selectedArticle={setSelectedArticle} />
-            </div>
-            <div>
-                <ArticleSummary article={selectedArticle} error={error} loading={loading} />
-            </div>
+            </section>
+            {articles && articles.length > 0 && (
+                <section>
+                    <ArticleList articles={articles} selectedArticle={setSelectedArticle} />
+                </section>
+            )}
+            <Separator />
+            {selectedArticle && (
+                <section>
+                    <ArticleSummary article={selectedArticle} error={error} loading={loading} />
+                </section>
+            )}
         </div>
     )
 }
