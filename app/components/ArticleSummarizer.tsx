@@ -23,9 +23,23 @@ const ArticleSummarizer = () => {
     }
 
     const handleSubmit = async () => {
+        setError(null)
         setLoading(true)
 
         try {
+            if (checkIfArticleExists(url)) {
+                toast("Article already exists", {
+                    icon: "",
+                    style: {
+                        borderRadius: "10px",
+                        background: "#333",
+                        color: "#fff",
+                    },
+                })
+
+                return
+            }
+
             const res = await fetch("/api/extractor", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -53,11 +67,19 @@ const ArticleSummarizer = () => {
                 setError(null)
             }
         } catch (error) {
-            console.error(error)
-            setError(error instanceof Error ? error.message : "Unknown error")
+            setError("Error while fetching article")
+            throw new Error("Error while fetching article")
         } finally {
             setLoading(false)
         }
+    }
+
+    // check if article already exists
+    const checkIfArticleExists = (url: string) => {
+        if (articles) {
+            return articles.some((article) => article.url === url)
+        }
+        return false
     }
 
     useEffect(() => {
@@ -76,29 +98,36 @@ const ArticleSummarizer = () => {
 
     useEffect(() => {
         if (loading) {
-            toast("Loading...", {
-                icon: "",
-                style: {
-                    borderRadius: "10px",
-                    background: "#333",
-                    color: "#fff",
+            toast.promise(
+                handleSubmit(),
+                {
+                    loading: "Loading...",
+                    success: "Done!",
+                    error: "Error while fetching article",
                 },
-            })
+                {
+                    style: {
+                        borderRadius: "10px",
+                        background: "#333",
+                        color: "#fff",
+                    },
+                }
+            )
         }
     }, [loading])
 
-    useEffect(() => {
-        if (error) {
-            toast("Error while fetching article", {
-                icon: "",
-                style: {
-                    borderRadius: "10px",
-                    background: "#333",
-                    color: "#fff",
-                },
-            })
-        }
-    }, [error])
+    // useEffect(() => {
+    //     if (error) {
+    //         toast.error("Error while fetching article", {
+    //             icon: "",
+    //             style: {
+    //                 borderRadius: "10px",
+    //                 background: "#333",
+    //                 color: "#fff",
+    //             },
+    //         })
+    //     }
+    // }, [error])
 
     return (
         <div className="flex flex-col gap-5">
@@ -122,7 +151,7 @@ const ArticleSummarizer = () => {
             <Separator />
             {selectedArticle && (
                 <section>
-                    <ArticleSummary article={selectedArticle} error={error} loading={loading} />
+                    <ArticleSummary article={selectedArticle} />
                 </section>
             )}
         </div>

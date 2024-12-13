@@ -1,3 +1,5 @@
+"use client"
+
 import { useState, useEffect } from "react"
 import { FaRegCopy } from "react-icons/fa"
 import { FaCheck } from "react-icons/fa"

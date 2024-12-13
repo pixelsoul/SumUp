@@ -1,10 +1,9 @@
-import { Fragment } from "react"
 import { Article } from "@/types/articles"
 
 interface Summary {
     article: Article | undefined
     error?: string | null
-    loading: boolean
+    loading?: boolean
 }
 
 const ArticleSummary = ({ article, error = null, loading = false }: Summary) => {
@@ -30,7 +29,7 @@ const ArticleSummary = ({ article, error = null, loading = false }: Summary) => 
             ) : article?.summary ? (
                 <div className="">
                     <h2 className="text-2xl font-bold mb-4">Summary</h2>
-                    <p>{formatSummary(article.summary)}</p>
+                    <div>{formatSummary(article.summary)}</div>
                 </div>
             ) : null}
         </section>
