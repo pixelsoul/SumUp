@@ -35,7 +35,7 @@ export default function RootLayout({
     return (
         <html lang="en">
             <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased container flex flex-col min-h-screen m-auto px-2 bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50`}>
+                className={`${geistSans.variable} ${geistMono.variable} antialiased container flex flex-col min-h-screen m-auto px-4 md:px-2 bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50`}>
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                     <Toaster />
                     <Header />
