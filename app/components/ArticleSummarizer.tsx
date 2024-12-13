@@ -112,7 +112,11 @@ const ArticleSummarizer = () => {
             </section>
             {articles && articles.length > 0 && (
                 <section>
-                    <ArticleList articles={articles} selectedArticle={setSelectedArticle} />
+                    <ArticleList
+                        articles={articles}
+                        selectedArticle={setSelectedArticle}
+                        selected={selectedArticle}
+                    />
                 </section>
             )}
             <Separator />

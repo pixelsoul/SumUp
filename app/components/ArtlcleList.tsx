@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { FaRegCopy } from "react-icons/fa"
 import { FaCheck } from "react-icons/fa"
 import { Articles, Article } from "@/types/articles"
@@ -6,9 +6,10 @@ import { Articles, Article } from "@/types/articles"
 interface ArticlesInterface {
     articles: Articles | undefined
     selectedArticle: (article: Article) => void
+    selected: Article | undefined
 }
 
-const ArticleList = ({ articles, selectedArticle }: ArticlesInterface) => {
+const ArticleList = ({ articles, selectedArticle, selected }: ArticlesInterface) => {
     const [copied, setCopied] = useState<string>()
 
     const handleCopy = (copyUrl: string) => {
@@ -41,7 +42,14 @@ const ArticleList = ({ articles, selectedArticle }: ArticlesInterface) => {
                                     <FaRegCopy className="w-[40%] h-[40%] object-contain" />
                                 )}
                             </div>
-                            <p className="flex-1 font-medium text-sm truncate">{article.url}</p>
+                            <p
+                                className={`flex-1 font-medium text-sm truncate ${
+                                    article.url === selected?.url
+                                        ? "text-orange-400 darl:text-orange-500"
+                                        : "text-neutral-950 dark:text-neutral-50"
+                                }`}>
+                                {article.url}
+                            </p>
                         </div>
                     ))
                     .reverse()}
