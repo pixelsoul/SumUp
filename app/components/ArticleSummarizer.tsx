@@ -18,25 +18,28 @@ const ArticleSummarizer = () => {
     const [articles, setArticles] = useState<Articles>()
     const [selectedArticle, setSelectedArticle] = useState<Article>()
 
-    const updateLocalStorage = (articles: Articles) => {
-        localStorage.setItem("articles", JSON.stringify(articles))
-    }
-
     const handleSubmit = async () => {
         setError(null)
         setLoading(true)
 
+        const toastId = toast.loading("Fetching Article...", {
+            style: {
+                borderRadius: "10px",
+                background: "#333",
+                color: "#fff",
+            },
+        })
+
         try {
             if (checkIfArticleExists(url)) {
-                toast("Article already exists", {
-                    icon: "",
+                toast.dismiss(toastId)
+                toast.error("Article already exists", {
                     style: {
                         borderRadius: "10px",
                         background: "#333",
                         color: "#fff",
                     },
                 })
-
                 return
             }
 
@@ -48,13 +51,21 @@ const ArticleSummarizer = () => {
 
             if (!res.ok) {
                 setError(res.statusText)
+                toast.error("Error while fetching article", { id: toastId })
                 throw new Error(res.statusText)
             }
 
             const data: ApiResponse = await res.json()
 
-            if (data?.summary) {
-                const newArticle = { url: url, summary: data.summary }
+            if (data) {
+                const newArticle = {
+                    title: data.title,
+                    description: data.description,
+                    url: data.url,
+                    md: data.md,
+                    image: data.image,
+                }
+
                 setArticles((prevArticles) => {
                     if (prevArticles) {
                         return [...prevArticles, newArticle]
@@ -65,13 +76,18 @@ const ArticleSummarizer = () => {
 
                 setSelectedArticle(newArticle)
                 setError(null)
+                toast.success("Article fetched successfully!", { id: toastId })
             }
         } catch (error) {
             setError("Error while fetching article")
-            throw new Error("Error while fetching article")
+            toast.error("Error while fetching article", { id: toastId })
         } finally {
             setLoading(false)
         }
+    }
+
+    const updateLocalStorage = (articles: Articles) => {
+        localStorage.setItem("articles", JSON.stringify(articles))
     }
 
     // check if article already exists
@@ -95,39 +111,6 @@ const ArticleSummarizer = () => {
             setArticles(JSON.parse(storedArticles))
         }
     }, [])
-
-    useEffect(() => {
-        if (loading) {
-            toast.promise(
-                handleSubmit(),
-                {
-                    loading: "Loading...",
-                    success: "Done!",
-                    error: "Error while fetching article",
-                },
-                {
-                    style: {
-                        borderRadius: "10px",
-                        background: "#333",
-                        color: "#fff",
-                    },
-                }
-            )
-        }
-    }, [loading])
-
-    // useEffect(() => {
-    //     if (error) {
-    //         toast.error("Error while fetching article", {
-    //             icon: "",
-    //             style: {
-    //                 borderRadius: "10px",
-    //                 background: "#333",
-    //                 color: "#fff",
-    //             },
-    //         })
-    //     }
-    // }, [error])
 
     return (
         <div className="flex flex-col gap-5">

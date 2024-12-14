@@ -33,25 +33,31 @@ const ArticleList = ({ articles, selectedArticle, selected }: ArticlesInterface)
                         <div
                             key={`link-${index}`}
                             onClick={() => handleSelectedArticle(article)}
-                            className="p-3 flex flex-row justify-center items-center bg-neutral-50 dark:bg-neutral-900 border border-neutral-200 dark:border-neutral-700 gap-3 rounded-md cursor-pointer">
-                            <div
-                                datatype=""
-                                className="text-neutral-950 dark:text-neutral-50 px-0 py-3 bg-neutral-200 dark:bg-neutral-950 flex items-center justify-center rounded-full text-4xl"
-                                onClick={() => handleCopy(article.url)}>
-                                {copied === article.url ? (
-                                    <FaCheck className="w-[40%] h-[40%] object-contain" />
-                                ) : (
-                                    <FaRegCopy className="w-[40%] h-[40%] object-contain" />
-                                )}
+                            className={`p-3 flex flex-row bg-neutral-50 dark:bg-neutral-900 border gap-3 rounded-md cursor-pointer ${
+                                article.url === selected?.url
+                                    ? "border-orange-500 bg-orange-100 dark:bg-orange-800"
+                                    : "border-neutral-200 dark:border-neutral-700"
+                            }`}>
+                            <div className="w-[50px]">
+                                <div
+                                    className={`text-neutral-950 dark:text-neutral-50 w-[50px] h-[50px]  border border-neutral-300 dark:border-neutral-700 flex items-center justify-center rounded-full text-xl ${
+                                        copied === article.url
+                                            ? "!bg-orange-500"
+                                            : "bg-neutral-200 dark:bg-neutral-950"
+                                    }`}
+                                    onClick={() => handleCopy(article.url)}>
+                                    {copied === article.url ? (
+                                        <FaCheck className=" object-contain" />
+                                    ) : (
+                                        <FaRegCopy className=" object-contain" />
+                                    )}
+                                </div>
                             </div>
-                            <p
-                                className={`flex-1 font-medium text-sm truncate ${
-                                    article.url === selected?.url
-                                        ? "text-orange-400 darl:text-orange-500"
-                                        : "text-neutral-950 dark:text-neutral-50"
-                                }`}>
-                                {article.url}
-                            </p>
+
+                            <div className="flex flex-col gap-1 justify-center truncate">
+                                <p className="text-sm truncate">{article.description}</p>
+                                <p className={`text-sm truncate`}>{article.url}</p>
+                            </div>
                         </div>
                     ))
                     .reverse()}
