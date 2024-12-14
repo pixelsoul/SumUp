@@ -32,7 +32,9 @@ const AddressInput = ({ value, setValue, placeholder, onSubmit }: AddressInputPr
                 required
                 className="url_input"
             />
-            <button type="submit" className={`absolute right-0 px-3 ${inter}`}>
+            <button
+                type="submit"
+                className={`absolute right-0 px-3 text-sm uppercase bg-neutral-200 dark:bg-neutral-800 h-full rounded-r-md ${inter}`}>
                 Go
             </button>
         </form>
