@@ -72,15 +72,15 @@ const ArticleList = ({
                                 onClick={() => handleSelectedArticle(article)}
                                 className={`p-3 flex flex-row bg-neutral-50 dark:bg-neutral-900 border gap-3 rounded-md cursor-pointer transition-colors duration-300 ${
                                     article.url === selected?.url
-                                        ? "border-orange-500 bg-orange-100 dark:bg-orange-800"
+                                        ? "border-orange-500 bg-orange-100 dark:bg-neutral-950"
                                         : "border-neutral-200 dark:border-neutral-700"
                                 }`}>
                                 <div className="w-[50px]">
                                     <Button
-                                        className={`text-neutral-950 dark:text-neutral-50 w-[50px] h-[50px]  border border-neutral-400 dark:border-neutral-800 flex items-center justify-center rounded-full text-xl ${
+                                        className={`text-neutral-950 dark:text-neutral-50 w-[50px] h-[50px] border border-neutral-400 dark:border-neutral-800 flex items-center justify-center rounded-full text-xl ${
                                             copied === article.url
-                                                ? "!bg-orange-500"
-                                                : "bg-neutral-200 dark:bg-neutral-950"
+                                                ? "!bg-green-500"
+                                                : "bg-neutral-200 dark:bg-neutral-900 hover:bg-neutral-300 hover:dark:bg-neutral-950"
                                         }`}
                                         onClick={() => handleCopy(article.url)}>
                                         {copied === article.url ? (
