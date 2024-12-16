@@ -90,7 +90,6 @@ const ArticleSummarizer = () => {
         localStorage.setItem("articles", JSON.stringify(articles))
     }
 
-    // check if article already exists
     const checkIfArticleExists = (url: string) => {
         if (articles) {
             return articles.some((article) => article.url === url)
@@ -120,6 +119,7 @@ const ArticleSummarizer = () => {
                     setValue={setUrl}
                     placeholder="Enter a URL"
                     onSubmit={handleSubmit}
+                    loading={loading}
                 />
             </section>
             {articles && articles.length > 0 && (
