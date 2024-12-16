@@ -1,22 +1,10 @@
 import type { Metadata } from "next"
-import localFont from "next/font/local"
 import "./globals.css"
 import Header from "@/app/components/layout/Header"
 import Footer from "@/app/components/layout/Footer"
 import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/app/components/ThemeProvider"
-import toast, { Toaster } from "react-hot-toast"
-
-const geistSans = localFont({
-    src: "./fonts/GeistVF.woff",
-    variable: "--font-geist-sans",
-    weight: "100 900",
-})
-const geistMono = localFont({
-    src: "./fonts/GeistMonoVF.woff",
-    variable: "--font-geist-mono",
-    weight: "100 900",
-})
+import { Toaster } from "react-hot-toast"
 
 const inter = Inter({
     subsets: ["latin"],
@@ -34,12 +22,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-            <body
-                className={`${geistSans.variable} ${geistMono.variable} antialiased container flex flex-col min-h-screen m-auto px-4 md:px-2 bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50`}>
+            <body className="antialiased flex flex-col  px-4 md:px-2 bg-neutral-50 dark:bg-neutral-950 text-neutral-950 dark:text-neutral-50">
                 <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
                     <Toaster />
                     <Header />
-                    {children}
+                    <main className={`container m-auto min-h-screen`}>{children}</main>
                     <Footer />
                 </ThemeProvider>
             </body>

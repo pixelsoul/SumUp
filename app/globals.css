@@ -6,6 +6,11 @@ body {
     font-family: Arial, Helvetica, sans-serif;
 }
 
+body.modal-open {
+    overflow: hidden;
+    padding-right: 1rem; /* Adjust for scrollbar width */
+}
+
 @layer base {
     :root {
         --background: 0 0% 100%;
@@ -93,26 +98,6 @@ body {
 
     .orange_gradient {
         @apply bg-gradient-to-r from-amber-500 via-orange-600 to-yellow-500 bg-clip-text text-transparent;
-    }
-
-    .desc {
-        @apply mt-5 text-lg text-gray-600 sm:text-xl text-center max-w-2xl;
-    }
-
-    .url_input {
-        @apply block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-white dark:bg-neutral-700 py-2.5 pl-10 pr-12 text-sm shadow-lg font-medium focus:border-black focus:outline-none focus:ring-0;
-    }
-
-    .submit_btn {
-        @apply hover:border-gray-700 dark:hover:border-gray-300 hover:text-gray-700 dark:hover:text-gray-400 absolute inset-y-0 right-0 my-1.5 mr-1.5 flex w-10 items-center justify-center rounded border border-gray-200 dark:border-gray-500 font-sans text-sm font-medium text-gray-400 dark:text-gray-300;
-    }
-
-    .link_card {
-        @apply p-3 mr-1 flex justify-center items-center flex-row bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 gap-3 rounded-md cursor-pointer;
-    }
-
-    .copy_btn {
-        @apply w-7 h-7 rounded-full bg-white/10 dark:bg-white/80 hover:bg-white shadow-[inset_10px_-50px_94px_0_rgb(199,199,199,0.2)] backdrop-blur flex justify-center items-center cursor-pointer;
     }
 
     .blue_gradient {
