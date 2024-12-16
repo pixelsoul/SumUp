@@ -11,7 +11,7 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-    title: "AI Summarizer",
+    title: "SumUp",
     description: "Generated article summeries with AI",
 }
 
