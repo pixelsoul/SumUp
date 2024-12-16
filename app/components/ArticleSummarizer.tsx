@@ -127,6 +127,7 @@ const ArticleSummarizer = () => {
                     <ArticleList
                         articles={articles}
                         selectedArticle={setSelectedArticle}
+                        deletedArticle={setArticles}
                         selected={selectedArticle}
                     />
                 </section>
