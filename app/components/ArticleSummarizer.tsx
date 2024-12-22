@@ -57,6 +57,8 @@ const ArticleSummarizer = () => {
 
             const data: ApiResponse = await res.json()
 
+            console.log(data)
+
             if (data) {
                 const newArticle = {
                     title: data.title,
@@ -64,6 +66,7 @@ const ArticleSummarizer = () => {
                     url: data.url,
                     md: data.md,
                     image: data.image,
+                    content: data.content,
                 }
 
                 setArticles((prevArticles) => {

@@ -4,6 +4,7 @@ export type Article = {
     url: string
     md: string
     image?: string | undefined
+    content?: string | undefined
 }
 
 export type Articles = Article[]
