@@ -8,7 +8,7 @@ import { RiDeleteBin6Line } from "react-icons/ri"
 import toast from "react-hot-toast"
 import { Button } from "@/components/ui/button"
 import CustomAlertDialog from "./AlertDialog"
-import { motion, AnimatePresence, useAnimation } from "motion/react"
+import { motion, AnimatePresence } from "motion/react"
 
 interface ArticlesInterface {
     articles: Articles | undefined

@@ -5,17 +5,14 @@ interface Summary {
 }
 
 const ArticleSummary = ({ article }: Summary) => {
-    const formatSummary = (summary: string) => {
-        const lines = summary.split("\n").filter((line) => line.trim() !== "") // Remove empty lines
-        return (
-            <ul className="flex flex-col gap-3">
-                {lines.map((line, index) => (
-                    <li className="p-0" key={index}>
-                        {line}
-                    </li>
-                ))}
-            </ul>
-        )
+    // format text and remove html tags and replace them with markdown
+    const formatText = (text: string) => {
+        // return text.replace(/<[^>]*>?/gm, " ")
+        return text
+    }
+
+    const createMarkup = (html: string) => {
+        return { __html: html }
     }
 
     return (
@@ -31,8 +28,27 @@ const ArticleSummary = ({ article }: Summary) => {
                     src={`${article?.image}`}
                     alt=""
                 />
-                {article && <span>{formatSummary(article?.md)}</span>}
+                {article && <span>{article?.md}</span>}
             </div>
+
+            <div className="flex flex-row gap-4">
+                <a
+                    href={article?.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline">
+                    Source
+                </a>
+            </div>
+
+            <article>
+                {article?.content && (
+                    <details>
+                        <summary className="hover:underline cursor-pointer mb-4">Read more</summary>
+                        <div dangerouslySetInnerHTML={createMarkup(formatText(article?.content))} />
+                    </details>
+                )}
+            </article>
         </section>
     )
 }
